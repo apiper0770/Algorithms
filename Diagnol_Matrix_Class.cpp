@@ -77,6 +77,8 @@ int main()
  dm.Create();
  dm.Display();
 
+ dm.~Diagonal();
+
  return 0;
  }
  

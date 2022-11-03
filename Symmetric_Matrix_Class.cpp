@@ -81,6 +81,8 @@ int main()
 
  dm.Create();
  dm.Display();
+
+ dm.~Symm();
  
  return 0;
 }

@@ -98,6 +98,8 @@ int main()
 
  dm.Create();
  dm.Display();
+
+ dm.~TriDiagonal();
  
  return 0;
  }

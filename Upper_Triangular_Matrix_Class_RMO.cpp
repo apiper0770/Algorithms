@@ -1,23 +1,23 @@
 #include <iostream>
 
 using namespace std;
-class LowerTri
+class UpperTri
 {
 private:
     int *A;
     int n;
 public:
- LowerTri()
+ UpperTri()
  {
     n=2;
     A=new int[2];
  }
- LowerTri(int n)
+ UpperTri(int n)
  {
     this->n=n;
     A=new int[n];
  }
- ~LowerTri()
+ ~UpperTri()
  {
     delete []A;
  }
@@ -28,41 +28,43 @@ public:
  int GetDimension(){return n;}
 };
 
-void LowerTri::Create()
+void UpperTri::Create()
 {
     printf("In row major order provide lower triangular elements.");
     int x;
     for(i=1;i<=n; i++)
     {
-        for(j=1;j<=i; j++)
+        for(j=i;j<=n; j++)
         {
             printf("Give element for row %d, column %d of triangular matrix", i,j);
             cin >> x;
-            A[i*(i-1)/2+j-1]=x;
+            A[((i-1)*n -(i-2)*(i-1)/2)+(j-i)]=x;
         }
 
     }
 }
-void LowerTri::Set(int i,int j,int x)
+
+void UpperTri::Set(int i,int j,int x)
 {
     if(i>=j)
-        A[i*(i-1)/2+j-1]=x;
+        A[((i-1)*n -(i-2)*(i-1)/2)+(j-i)]=x;
 }
-int LowerTri::Get(int i,int j)
+
+int UpperTri::Get(int i,int j)
 {
- if(i>=j)
-    return A[i*(i-1)/2+j-1];
- else
-    return 0;
+ if(i==j)
+    return A[((i-1)*n -(i-2)*(i-1)/2)+(j-i)];
+ return 0;
 }
-void LowerTri::Display()
+
+void UpperTri::Display()
 {
  for(int i=1;i<=n;i++)
  {
     for(int j=1;j<=n;j++)
     {
         if(i>=j)
-            cout<<A[i*(i-1)/2+j-1]<<“ ";
+            cout<<A[((i-1)*n -(i-2)*(i-1)/2)+(j-i)]<<“ ";
         else
             cout<<"0 ";
     }
@@ -72,16 +74,24 @@ void LowerTri::Display()
 
 int main()
 {
- int d;
- cout<<"Enter Dimensions";
- cin>>d;
+ UpperTri *m;
+ int i,j,x;
 
- LowerTri dm(d);
+ printf("Enter Dimension");
+ scanf("%d",m->n);
+ m->A=(int *)malloc(m->n*(m->n+1)/2*sizeof(int));
+ printf("enter all elements");
+ for(i=1;i<=m->n;i++)
+ {
+    for(j=1;j<=m->n;j++)
+    {
+        scanf("%d",&x);
+        m->Set(i,j,x);
+    }
+}
+ printf("\n\n");
+ m->Display();
 
- dm.Create();
- dm.Display();
- 
- return 0;
 
  return 0;
  }

@@ -81,7 +81,10 @@ int main()
 
  dm.Create();
  dm.Display();
- 
+
+ dm.~UpperTri_Col();
+
+
  return 0;
  }
  

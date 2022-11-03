@@ -80,9 +80,8 @@ int main()
 
  dm.Create();
  dm.Display();
- 
- return 0;
 
+ dm.~LowerTri_Col();
 
  return 0;
  }
