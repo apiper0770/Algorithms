@@ -20,16 +20,19 @@ public:
  ~UpperTri()
  {
     delete []A;
+    
  }
  void Create();
- void Set(int i,int j,int x);
- int Get(int i,int j);
+ void SetValue(int i,int j,int x);
+ void SetSize(int n);
+ int GetValue(int i,int j);
  void Display();
  int GetDimension(){return n;}
 };
 
 void UpperTri::Create()
 {
+    printf("enter all elements");
     printf("In row major order provide lower triangular elements.");
     int x;
     for(i=1;i<=n; i++)
@@ -42,21 +45,26 @@ void UpperTri::Create()
         }
 
     }
+    printf("\n\n");
 }
 
-void UpperTri::Set(int i,int j,int x)
+void UpperTri::SetValue(int i,int j,int x)
 {
     if(i>=j)
         A[((i-1)*n -(i-2)*(i-1)/2)+(j-i)]=x;
 }
 
-int UpperTri::Get(int i,int j)
+void UpperTri::SetSize(int n)
+{
+    this->n = n;
+}
+
+int UpperTri::GetValue(int i,int j)
 {
  if(i==j)
     return A[((i-1)*n -(i-2)*(i-1)/2)+(j-i)];
  return 0;
 }
-
 void UpperTri::Display()
 {
  for(int i=1;i<=n;i++)
@@ -74,23 +82,14 @@ void UpperTri::Display()
 
 int main()
 {
- UpperTri *m;
- int i,j,x;
+ UpperTri m;
+ int dim;
 
  printf("Enter Dimension");
- scanf("%d",m->n);
- m->A=(int *)malloc(m->n*(m->n+1)/2*sizeof(int));
- printf("enter all elements");
- for(i=1;i<=m->n;i++)
- {
-    for(j=1;j<=m->n;j++)
-    {
-        scanf("%d",&x);
-        m->Set(i,j,x);
-    }
-}
- printf("\n\n");
- m->Display();
+ cin >> dim;
+ m.SetSize(dim);
+ m.Create(); 
+ m.Display();
 
 
  return 0;
