@@ -1,6 +1,6 @@
 #include <iostream>
-
 using namespace std;
+
 class Node{
 public:
     int data;
@@ -142,13 +142,13 @@ void CircularLinkedList::Insert(struct Node *p, int index, int x)
         x=Head->data;
         if(Head==p)
         {
-            free(Head);
+            delete head;
             Head=NULL;
         }
         else
         {
             p->next=Head->next;
-            free(Head);
+            delete head;
             Head=p->next;
         }
     }
@@ -161,7 +161,7 @@ void CircularLinkedList::Insert(struct Node *p, int index, int x)
         q=p->next;
         p->next=q->next;
         x=q->data;
-        free(q);
+        delete q;
     } 
     return x; 
 }
